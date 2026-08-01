@@ -4,8 +4,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://solarbalkon-ratgeber.github.io',
-  base: '/',
+  site: 'https://freemoser.github.io',
+  base: '/balkonkraftwerk-ratgeber',
   output: 'static',
   integrations: [sitemap()],
   compressHTML: true,
