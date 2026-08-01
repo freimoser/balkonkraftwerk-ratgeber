@@ -1,0 +1,184 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const icons: Record<string, string> = {
+  'balkonkraftwerk-kaufen-guide': '🛒',
+  'balkonkraftwerk-anmelden': '📋',
+  'balkonkraftwerk-ertrag': '📊',
+  'balkonkraftwerk-mieter': '🏠',
+  'speicher-balkonkraftwerk': '🔋',
+  'balkonkraftwerk-fehler-vermeiden': '⚠️',
+};
+
+const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://solarbalkon-ratgeber.github.io';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'SolarBalkon Ratgeber',
+    url: siteUrl,
+    description:
+      'Unabhängiger Ratgeber zu Balkonkraftwerken: Kaufberatung, Installation, Anmeldung und Stromsparen für Mieter und Eigentümer.',
+    inLanguage: 'de-DE',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${siteUrl}/blog`,
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'SolarBalkon Ratgeber',
+    url: siteUrl,
+    description: 'Unabhängiger Ratgeber zu Balkonkraftwerken und Steckersolar.',
+  },
+];
+---
+
+<BaseLayout
+  title="SolarBalkon Ratgeber"
+  description="Balkonkraftwerk kaufen, anmelden und Strom sparen: unabhängige Kaufberatung, Ertragsrechner-Tipps und Schritt-für-Schritt-Anleitungen für Mieter und Eigentümer."
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container hero__content">
+      <span class="hero__badge">Steckersolar · Unabhängig · Praxisnah</span>
+      <h1>Balkonkraftwerk: Strom sparen ab dem ersten Tag</h1>
+      <p class="hero__lead">
+        Ob 600 oder 800 Watt – wir erklären Kauf, Anmeldung, Montage und realistische Erträge.
+        Ohne Fachchinesisch, mit klaren Empfehlungen für Mieter und Eigentümer.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/blog/balkonkraftwerk-kaufen-guide">Kaufberatung 2026</a>
+        <a class="btn btn--outline" href="/blog">Alle Ratgeber</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="stats">
+        <div>
+          <p class="stat__value">bis 30&nbsp;%</p>
+          <p class="stat__label">weniger Stromkosten möglich</p>
+        </div>
+        <div>
+          <p class="stat__value">800&nbsp;W</p>
+          <p class="stat__label">max. Wechselrichterleistung</p>
+        </div>
+        <div>
+          <p class="stat__value">2.000&nbsp;W</p>
+          <p class="stat__label">max. Modulleistung erlaubt</p>
+        </div>
+        <div>
+          <p class="stat__value">ca. 30&nbsp;Min.</p>
+          <p class="stat__label">Anmeldung im Marktstammdatenregister</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <h2>Warum ein Balkonkraftwerk lohnt</h2>
+        <p>
+          Steckersolargeräte sind der einfachste Einstieg in die eigene Stromerzeugung –
+          legal, förderfähig und in wenigen Stunden betriebsbereit.
+        </p>
+      </div>
+      <div class="features">
+        <article class="feature-card">
+          <div class="feature-card__icon" aria-hidden="true">💶</div>
+          <h3>Schnelle Amortisation</h3>
+          <p>
+            Bei guten Bedingungen und aktuellem Strompreis rechnet sich eine Anlage oft in
+            4–7 Jahren – danach produzieren Sie praktisch kostenlosen Strom.
+          </p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-card__icon" aria-hidden="true">🔌</div>
+          <h3>Einfache Installation</h3>
+          <p>
+            Module am Geländer oder an der Fassade befestigen, Wechselrichter anschließen,
+            Schuko-Stecker in die Steckdose – fertig. Kein Elektriker zwingend nötig.
+          </p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-card__icon" aria-hidden="true">📜</div>
+          <h3>Klare Rechtslage</h3>
+          <p>
+            Bis 800 W Wechselrichterleistung und 2.000 W Modulleistung gilt vereinfachte
+            Anmeldung. Mieter haben seit 2024 ein Recht auf Zustimmung des Vermieters.
+          </p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-card__icon" aria-hidden="true">🌿</div>
+          <h3>Klimaschutz zu Hause</h3>
+          <p>
+            Jede selbst erzeugte Kilowattstunde entlastet das Netz und reduziert Ihren
+            CO₂-Fußabdruck – spürbar und messbar im Alltag.
+          </p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-card__icon" aria-hidden="true">📈</div>
+          <h3>Preisstabilität</h3>
+          <p>
+            Steigende Netzstrompreise machen Eigenverbrauch immer wertvoller. Ihr Balkonkraftwerk
+            schützt einen Teil Ihres Haushalts vor Preissprüngen.
+          </p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-card__icon" aria-hidden="true">🛠️</div>
+          <h3>Erweiterbar</h3>
+          <p>
+            Später Speicher, zusätzliche Module oder Monitoring nachrüsten – viele Systeme
+            wachsen mit Ihrem Bedarf und Budget mit.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <h2>Aktuelle Ratgeber</h2>
+        <p>Fundierte Anleitungen und Kaufhilfen – regelmäßig aktualisiert.</p>
+      </div>
+      <div class="article-grid">
+        {posts.map((post) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.id}`}
+            pubDate={post.data.pubDate}
+            icon={icons[post.id] || '☀'}
+          />
+        ))}
+      </div>
+      <p class="text-center mt-xl">
+        <a class="btn btn--secondary" href="/blog">Alle Artikel anzeigen</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Bereit für Ihren eigenen Solarstrom?</h2>
+      <p>
+        Starten Sie mit unserem Kauf-Guide: Wir zeigen, worauf es bei Modulen, Wechselrichter
+        und Halterung wirklich ankommt – und welche Fehler Sie vermeiden.
+      </p>
+      <a class="btn btn--primary" href="/blog/balkonkraftwerk-kaufen-guide">Zum Kauf-Guide</a>
+    </div>
+  </section>
+</BaseLayout>

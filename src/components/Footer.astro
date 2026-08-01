@@ -1,0 +1,38 @@
+---
+const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL;
+const path = (p: string) => (base === '/' ? p : base.replace(/\/$/, '') + p);
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <p class="footer__brand">SolarBalkon Ratgeber</p>
+        <p class="footer__about">
+          Unabhängige Informationen zu Balkonkraftwerken: Kaufberatung, Installation,
+          Anmeldung und Stromsparen – verständlich und praxisnah für Mieter und Eigentümer.
+        </p>
+      </div>
+      <nav class="footer__nav" aria-label="Inhalte">
+        <h3>Inhalte</h3>
+        <ul>
+          <li><a href={path('/')}>Startseite</a></li>
+          <li><a href={path('/blog')}>Ratgeber</a></li>
+          <li><a href={path('/ueber-mich')}>Über mich</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__nav" aria-label="Rechtliches">
+        <h3>Rechtliches</h3>
+        <ul>
+          <li><a href={path('/impressum')}>Impressum</a></li>
+          <li><a href={path('/datenschutz')}>Datenschutz</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; {year} SolarBalkon Ratgeber. Alle Rechte vorbehalten.</p>
+      <p>Unabhängiger Ratgeber – keine Anlageberatung.</p>
+    </div>
+  </div>
+</footer>

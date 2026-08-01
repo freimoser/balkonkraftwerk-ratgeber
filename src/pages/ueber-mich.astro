@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://solarbalkon-ratgeber.github.io';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Über mich – SolarBalkon Ratgeber',
+  url: `${siteUrl}/ueber-mich`,
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Thomas Keller',
+    jobTitle: 'Energie- und Technikautor',
+    description:
+      'Autor des SolarBalkon Ratgebers. Erklärt Balkonkraftwerke verständlich für Mieter und Eigentümer.',
+    url: `${siteUrl}/ueber-mich`,
+  },
+};
+---
+
+<BaseLayout
+  title="Über mich"
+  description="Thomas Keller erklärt Balkonkraftwerke praxisnah: Hintergrund, Arbeitsweise und redaktionelle Grundsätze des SolarBalkon Ratgebers."
+  schema={schema}
+>
+  <header class="page-header">
+    <div class="container">
+      <nav aria-label="Brotkrumen">
+        <ol class="breadcrumb">
+          <li><a href="/">Start</a></li>
+          <li aria-current="page">Über mich</li>
+        </ol>
+      </nav>
+      <h1>Über mich</h1>
+      <p>Wer hinter dem SolarBalkon Ratgeber steckt – und wie die Inhalte entstehen.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="about-grid">
+        <div class="about-avatar" aria-hidden="true">TK</div>
+        <div class="prose">
+          <h2 style="margin-top:0">Thomas Keller</h2>
+          <p>
+            Ich beschäftige mich seit mehreren Jahren mit dezentraler Energieerzeugung –
+            zuerst mit einer klassischen Dachanlage, später mit Steckersolargeräten auf Balkon
+            und Terrasse. Was mich antreibt: Technik so erklären, dass man danach eine
+            fundierte Entscheidung treffen kann – ohne Verkaufsdruck.
+          </p>
+          <p>
+            Auf SolarBalkon Ratgeber finden Sie unabhängige Kaufhilfen, Anleitungen zur
+            Anmeldung und ehrliche Einschätzungen zu Ertrag, Speicher und typischen Fehlern.
+            Die Artikel basieren auf Herstellerangaben, Normen (u. a. VDE), gesetzlichen
+            Regelungen und eigenen Praxiserfahrungen.
+          </p>
+
+          <h2>Redaktionelle Grundsätze</h2>
+          <ul>
+            <li>
+              <strong>Unabhängig:</strong> Keine bezahlten Produktplatzierungen ohne Kennzeichnung.
+              Empfehlungen folgen Nutzen und Preis-Leistung.
+            </li>
+            <li>
+              <strong>Aktuell:</strong> Rechtliche Änderungen (z. B. 800-W-Regel, Mieterrechte)
+              werden zeitnah eingearbeitet.
+            </li>
+            <li>
+              <strong>Verständlich:</strong> Fachbegriffe werden erklärt. Kein unnötiger Jargon.
+            </li>
+            <li>
+              <strong>Praxisnah:</strong> Checklisten, Tabellen und konkrete Schritte statt
+              abstrakter Theorie.
+            </li>
+          </ul>
+
+          <h2>Hinweis</h2>
+          <p>
+            Die Inhalte dienen der allgemeinen Information und ersetzen keine individuelle
+            Rechts-, Steuer- oder Elektrofachberatung. Bei Unsicherheiten zu Elektroinstallation
+            oder Statik ziehen Sie bitte Fachleute hinzu.
+          </p>
+
+          <p>
+            Feedback oder Korrekturhinweise? Schreiben Sie über die Kontaktdaten im
+            <a href="/impressum">Impressum</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

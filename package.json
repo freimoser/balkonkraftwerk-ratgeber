@@ -1,0 +1,19 @@
+{
+  "name": "solarbalkon-ratgeber",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Unabhängiger Ratgeber zu Balkonkraftwerken – Kaufberatung, Installation und Stromsparen",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^7.1.6"
+  }
+}

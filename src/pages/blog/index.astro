@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const icons: Record<string, string> = {
+  'balkonkraftwerk-kaufen-guide': '🛒',
+  'balkonkraftwerk-anmelden': '📋',
+  'balkonkraftwerk-ertrag': '📊',
+  'balkonkraftwerk-mieter': '🏠',
+  'speicher-balkonkraftwerk': '🔋',
+  'balkonkraftwerk-fehler-vermeiden': '⚠️',
+};
+
+const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://solarbalkon-ratgeber.github.io';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Balkonkraftwerk Ratgeber',
+  description:
+    'Alle Ratgeber-Artikel zu Balkonkraftwerken: Kauf, Anmeldung, Ertrag, Mieterrechte und Speicher.',
+  url: `${siteUrl}/blog`,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'SolarBalkon Ratgeber',
+    url: siteUrl,
+  },
+  inLanguage: 'de-DE',
+};
+---
+
+<BaseLayout
+  title="Balkonkraftwerk Ratgeber – Alle Artikel"
+  description="Komplette Übersicht: Balkonkraftwerk kaufen, anmelden, Ertrag berechnen, als Mieter installieren und typische Fehler vermeiden."
+  schema={schema}
+>
+  <header class="page-header">
+    <div class="container">
+      <nav aria-label="Brotkrumen">
+        <ol class="breadcrumb">
+          <li><a href="/">Start</a></li>
+          <li aria-current="page">Ratgeber</li>
+        </ol>
+      </nav>
+      <h1>Balkonkraftwerk Ratgeber</h1>
+      <p>
+        Praxisnahe Anleitungen und Kaufhilfen rund um Steckersolargeräte – von der ersten
+        Überlegung bis zum laufenden Betrieb.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="article-grid">
+        {posts.map((post) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.id}`}
+            pubDate={post.data.pubDate}
+            icon={icons[post.id] || '☀'}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

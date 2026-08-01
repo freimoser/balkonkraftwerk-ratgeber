@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  pubDate: Date;
+  icon?: string;
+  readingTime?: string;
+}
+
+const { title, description, href, pubDate, icon = '☀', readingTime } = Astro.props;
+
+const dateStr = pubDate.toLocaleDateString('de-DE', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<a class="article-card" href={href}>
+  <div class="article-card__image" aria-hidden="true">{icon}</div>
+  <div class="article-card__body">
+    <p class="article-card__meta">
+      <time datetime={pubDate.toISOString()}>{dateStr}</time>
+      {readingTime && <> · {readingTime}</>}
+    </p>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <span class="article-card__link">Weiterlesen →</span>
+  </div>
+</a>

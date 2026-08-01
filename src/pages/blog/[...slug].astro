@@ -1,0 +1,111 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://solarbalkon-ratgeber.github.io';
+const articleUrl = `${siteUrl}/blog/${post.id}`;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
+  author: {
+    '@type': 'Person',
+    name: post.data.author,
+    url: `${siteUrl}/ueber-mich`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'SolarBalkon Ratgeber',
+    url: siteUrl,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': articleUrl,
+  },
+  inLanguage: 'de-DE',
+  keywords: post.data.tags.join(', '),
+};
+
+const dateStr = post.data.pubDate.toLocaleDateString('de-DE', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const updatedStr = post.data.updatedDate?.toLocaleDateString('de-DE', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  ogType="article"
+  article={{
+    publishedTime: post.data.pubDate.toISOString(),
+    modifiedTime: (post.data.updatedDate || post.data.pubDate).toISOString(),
+    author: post.data.author,
+    tags: post.data.tags,
+  }}
+  schema={schema}
+>
+  <header class="page-header">
+    <div class="container container--narrow">
+      <nav aria-label="Brotkrumen">
+        <ol class="breadcrumb">
+          <li><a href="/">Start</a></li>
+          <li><a href="/blog">Ratgeber</a></li>
+          <li aria-current="page">{post.data.title}</li>
+        </ol>
+      </nav>
+      <h1>{post.data.title}</h1>
+      <div class="article-meta">
+        <span>
+          Von <a href="/ueber-mich">{post.data.author}</a>
+        </span>
+        <span>
+          <time datetime={post.data.pubDate.toISOString()}>{dateStr}</time>
+        </span>
+        {updatedStr && (
+          <span>
+            Aktualisiert: <time datetime={post.data.updatedDate!.toISOString()}>{updatedStr}</time>
+          </span>
+        )}
+      </div>
+    </div>
+  </header>
+
+  <article class="section">
+    <div class="container">
+      <div class="prose">
+        <Content />
+        {post.data.tags.length > 0 && (
+          <ul class="tags" aria-label="Schlagwörter">
+            {post.data.tags.map((tag) => (
+              <li class="tag">{tag}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <p class="text-center mt-xl">
+        <a class="btn btn--secondary" href="/blog">← Alle Ratgeber</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

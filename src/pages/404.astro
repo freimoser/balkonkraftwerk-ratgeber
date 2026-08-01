@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Seite nicht gefunden"
+  description="Die angeforderte Seite existiert nicht."
+  noindex={true}
+>
+  <section class="section">
+    <div class="container text-center">
+      <h1>404 – Seite nicht gefunden</h1>
+      <p style="color: var(--color-text-muted); max-width: 28rem; margin-inline: auto;">
+        Diese Seite gibt es nicht (mehr). Nutzen Sie die Navigation oder kehren Sie zur Startseite zurück.
+      </p>
+      <p class="mt-xl">
+        <a class="btn btn--secondary" href="/">Zur Startseite</a>
+        <a class="btn btn--primary" href="/blog" style="margin-left: 0.75rem;">Zum Ratgeber</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
