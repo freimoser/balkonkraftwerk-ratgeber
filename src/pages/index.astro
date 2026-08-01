@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
@@ -57,8 +59,8 @@ const schema = [
         Ohne Fachchinesisch, mit klaren Empfehlungen für Mieter und Eigentümer.
       </p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="/blog/balkonkraftwerk-kaufen-guide">Kaufberatung 2026</a>
-        <a class="btn btn--outline" href="/blog">Alle Ratgeber</a>
+        <a class="btn btn--primary" href={base + "blog/balkonkraftwerk-kaufen-guide"}>Kaufberatung 2026</a>
+        <a class="btn btn--outline" href={base + "blog"}>Alle Ratgeber</a>
       </div>
     </div>
   </section>
@@ -159,14 +161,14 @@ const schema = [
           <ArticleCard
             title={post.data.title}
             description={post.data.description}
-            href={`/blog/${post.id}`}
+            href={`${base}blog/${post.id}`}
             pubDate={post.data.pubDate}
             icon={icons[post.id] || '☀'}
           />
         ))}
       </div>
       <p class="text-center mt-xl">
-        <a class="btn btn--secondary" href="/blog">Alle Artikel anzeigen</a>
+        <a class="btn btn--secondary" href={base + "blog"}>Alle Artikel anzeigen</a>
       </p>
     </div>
   </section>
@@ -178,7 +180,7 @@ const schema = [
         Starten Sie mit unserem Kauf-Guide: Wir zeigen, worauf es bei Modulen, Wechselrichter
         und Halterung wirklich ankommt – und welche Fehler Sie vermeiden.
       </p>
-      <a class="btn btn--primary" href="/blog/balkonkraftwerk-kaufen-guide">Zum Kauf-Guide</a>
+      <a class="btn btn--primary" href={base + "blog/balkonkraftwerk-kaufen-guide"}>Zum Kauf-Guide</a>
     </div>
   </section>
 </BaseLayout>

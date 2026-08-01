@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <BaseLayout
@@ -14,8 +15,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Diese Seite gibt es nicht (mehr). Nutzen Sie die Navigation oder kehren Sie zur Startseite zurück.
       </p>
       <p class="mt-xl">
-        <a class="btn btn--secondary" href="/">Zur Startseite</a>
-        <a class="btn btn--primary" href="/blog" style="margin-left: 0.75rem;">Zum Ratgeber</a>
+        <a class="btn btn--secondary" href={base}>Zur Startseite</a>
+        <a class="btn btn--primary" href={base + "blog"} style="margin-left: 0.75rem;">Zum Ratgeber</a>
       </p>
     </div>
   </section>

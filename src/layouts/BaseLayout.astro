@@ -100,9 +100,9 @@ const schemas = Array.isArray(schemaData) ? schemaData : [schemaData];
       </>
     )}
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL + "/favicon.svg"} />
+    <link rel="icon" href={import.meta.env.BASE_URL + "/favicon.ico"} />
+    <link rel="sitemap" href={import.meta.env.BASE_URL + "/sitemap-index.xml"} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
