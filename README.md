@@ -51,4 +51,4 @@ Kein AdSense oder anderes Werbenetzwerk eingebunden.
 
 ## Lizenz
 
-Inhalt © SolarBalkon Ratgeber. Vor Veröffentlichung Impressumsdaten und Beispiel-USt-IdNr. ersetzen.
+Inhalt © SolarBalkon Ratgeber. Anbieterangaben: siehe Impressum / freimoser.de/impressum/.
