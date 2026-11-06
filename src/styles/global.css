@@ -12,8 +12,8 @@
   --color-text-muted: #5c5c5c;
   --color-border: #e0d8cc;
   --color-success: #2d6a4f;
-  --font-sans: 'Source Sans 3', system-ui, -apple-system, sans-serif;
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'Source Sans 3 Variable', 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, serif;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;

@@ -7,7 +7,7 @@ Unabhängige Nischen-Website zu Balkonkraftwerken (Steckersolar) – gebaut mit 
 - Astro 7 (static HTML)
 - Vanilla CSS (mobile-first, Grün/Erde)
 - `@astrojs/sitemap`
-- Google Fonts (Fraunces + Source Sans 3)
+- Local fonts via Fontsource (Fraunces + Source Sans 3)
 - Kein React, kein Tailwind, keine weiteren JS-Frameworks
 
 ## Entwicklung
@@ -42,11 +42,12 @@ GitHub Actions-Workflow: `.github/workflows/deploy.yml`
 | `/blog/*` | Artikel |
 | `/ueber-mich` | Autor |
 | `/impressum` | Impressum (DSGVO/DDG) |
-| `/datenschutz` | Datenschutzerklärung inkl. AdSense |
+| `/datenschutz` | Datenschutzerklärung |
 
-## AdSense
+## Werbung
 
-Platzhalter und Datenschutz-Abschnitte sind vorbereitet. AdSense-Code erst nach Freigabe und mit Consent-Banner (TDDDG/DSGVO) einbinden.
+Kein AdSense oder anderes Werbenetzwerk eingebunden.
+
 
 ## Lizenz
 
